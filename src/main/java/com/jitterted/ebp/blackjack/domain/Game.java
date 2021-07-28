@@ -19,6 +19,7 @@ public class Game {
     public void initialDeal() {
         dealRoundOfCards();
         dealRoundOfCards();
+        playerDone = playerHand.isBlackjack();
     }
 
     private void dealRoundOfCards() {
@@ -28,10 +29,13 @@ public class Game {
     }
 
     public GameOutcome determineOutcome() {
+        // Pre-Condition: playerDone == true
         if (playerHand.isBusted()) {
             return GameOutcome.PLAYER_BUSTED;
         } else if (dealerHand.isBusted()) {
             return GameOutcome.DEALER_BUSTED;
+        } else if (playerHand.isBlackjack()) {
+            return GameOutcome.PLAYER_WINS_BLACKJACK;
         } else if (playerHand.beats(dealerHand)) {
             return GameOutcome.PLAYER_BEATS_DEALER;
         } else if (playerHand.pushes(dealerHand)) {
@@ -65,11 +69,13 @@ public class Game {
     }
 
     public void playerHits() {
+        // PRE-CONDITION: playerDone == false
         playerHand.drawFrom(deck);
         playerDone = playerHand.isBusted();
     }
 
     public void playerStands() {
+        // PRE-CONDITION: playerDone == false
         playerDone = true;
     }
 

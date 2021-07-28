@@ -55,11 +55,16 @@ public class Hand {
     }
 
     boolean pushes(Hand hand) {
+        // Pre-Condition: this.isBusted() == false
         return hand.value() == value();
     }
 
     boolean beats(Hand hand) {
+        // Pre-Condition: this.isBusted() == false
         return hand.value() < value();
     }
 
+    public boolean isBlackjack() {
+        return cards.size() == 2 && value() == 21;
+    }
 }
