@@ -34,4 +34,9 @@ public class WebIntegrationTest {
 
     }
 
+    @Test
+    public void postToHitEndpointIsRedirection() throws Exception {
+        mockMvc.perform(post("/hit"))
+               .andExpect(status().is3xxRedirection());
+    }
 }
