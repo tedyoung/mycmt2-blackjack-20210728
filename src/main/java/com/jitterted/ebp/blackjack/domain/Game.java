@@ -84,6 +84,9 @@ public class Game {
         // PRE-CONDITION: playerDone == false
         playerHand.drawFrom(deck);
         playerDone = playerHand.isBusted();
+        if (playerDone) {
+            gameMonitor.roundCompleted(this);
+        }
     }
 
     public void playerStands() {
