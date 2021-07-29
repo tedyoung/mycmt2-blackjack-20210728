@@ -22,9 +22,7 @@ class GameOutcomeTest {
 
     @Test
     public void whenPlayerHitsAndGoesBustOutcomeIsPlayerBusted() throws Exception {
-        Deck stubDeck = new StubDeck(Rank.TEN, Rank.EIGHT,
-                                     Rank.QUEEN, Rank.JACK,
-                                     Rank.THREE);
+        Deck stubDeck = StubDeck.playerHitsAndGoesBust();
         Game game = new Game(stubDeck);
         game.initialDeal();
 
