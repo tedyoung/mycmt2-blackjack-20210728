@@ -4,9 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ListIterator;
 
-class StubDeck extends Deck {
+public class StubDeck extends Deck {
     private static final Suit DUMMY_SUIT = Suit.HEARTS;
     private final ListIterator<Card> iterator;
+
+    public StubDeck(List<Card> cards) {
+        this.iterator = cards.listIterator();
+    }
 
     public StubDeck(Rank... ranks) {
         List<Card> cards = new ArrayList<>();
