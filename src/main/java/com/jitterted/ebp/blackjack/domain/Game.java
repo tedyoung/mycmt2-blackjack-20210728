@@ -31,10 +31,7 @@ public class Game {
     public void initialDeal() {
         dealRoundOfCards();
         dealRoundOfCards();
-        playerDone = playerHand.isBlackjack();
-        if (playerDone) {
-            gameMonitor.roundCompleted(this);
-        }
+        updatePlayerDoneTo(playerHand.isBlackjack());
     }
 
     private void dealRoundOfCards() {
@@ -86,20 +83,23 @@ public class Game {
     public void playerHits() {
         // PRE-CONDITION: playerDone == false
         playerHand.drawFrom(deck);
-        playerDone = playerHand.isBusted();
-        if (playerDone) {
-            gameMonitor.roundCompleted(this);
-        }
+        updatePlayerDoneTo(playerHand.isBusted());
     }
 
     public void playerStands() {
         // PRE-CONDITION: playerDone == false
-        playerDone = true;
         dealerTurn();
-        gameMonitor.roundCompleted(this);
+        updatePlayerDoneTo(true);
     }
 
     public boolean isPlayerDone() {
         return playerDone;
+    }
+
+    private void updatePlayerDoneTo(boolean isPlayerDone) {
+        playerDone = isPlayerDone;
+        if (playerDone) {
+            gameMonitor.roundCompleted(this);
+        }
     }
 }

@@ -16,7 +16,8 @@ class GameMonitorTest {
     public void playerStandsCompletesGameSendsToMonitor() throws Exception {
         // creates the spy based on the interface
         GameMonitor gameMonitorSpy = spy(GameMonitor.class);
-        Game game = new Game(new Deck(), gameMonitorSpy);
+        Deck playerNotDealtBlackjackDeck = StubDeck.playerIsNotDealtBlackjack();
+        Game game = new Game(playerNotDealtBlackjackDeck, gameMonitorSpy);
         game.initialDeal();
 
         game.playerStands();
