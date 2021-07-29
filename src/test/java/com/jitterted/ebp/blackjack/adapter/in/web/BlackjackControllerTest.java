@@ -18,7 +18,8 @@ class BlackjackControllerTest {
 
     @Test
     public void startGameResultsInCardsDealtToPlayer() throws Exception {
-        Game game = new Game();
+        Deck playerIsNotDealtBlackjack = StubDeck.playerIsNotDealtBlackjack();
+        Game game = new Game(playerIsNotDealtBlackjack);
         BlackjackController blackjackController = new BlackjackController(game);
 
         String redirectPage = blackjackController.startGame();
@@ -83,7 +84,8 @@ class BlackjackControllerTest {
 
     @Test
     public void donePageShowsFinalGameStateWithOutcome() throws Exception {
-        Game game = new Game();
+        Deck playerIsNotDealtBlackjack = StubDeck.playerIsNotDealtBlackjack();
+        Game game = new Game(playerIsNotDealtBlackjack);
         BlackjackController blackjackController = new BlackjackController(game);
         blackjackController.startGame();
 
