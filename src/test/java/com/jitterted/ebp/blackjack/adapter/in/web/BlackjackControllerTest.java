@@ -99,5 +99,21 @@ class BlackjackControllerTest {
                 .isNotBlank();
     }
 
+    @Test
+    public void playerStandsResultsInRedirectAndGamePlayerIsDone() throws Exception {
+        Deck playerIsNotDealtBlackjack = StubDeck.playerIsNotDealtBlackjack();
+        Game game = new Game(playerIsNotDealtBlackjack);
+        BlackjackController blackjackController = new BlackjackController(game);
+        blackjackController.startGame();
+
+        String redirectPage = blackjackController.standCommand();
+
+        assertThat(redirectPage)
+                .isEqualTo("redirect:/done");
+
+        assertThat(game.isPlayerDone())
+                .isTrue();
+    }
+
 
 }

@@ -32,6 +32,11 @@ public class StubDeck extends Deck {
                             Rank.THREE);
     }
 
+    public static Deck playerIsNotDealtBlackjack() {
+        return new StubDeck(Rank.TEN, Rank.EIGHT,
+                            Rank.SIX, Rank.JACK);
+    }
+
     @Override
     public Card draw() {
         return iterator.next();
